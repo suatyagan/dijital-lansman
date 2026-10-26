@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Yağan Dijital - Dijital Lansman | Canlı sunum, ekran paylaşımı, katılımcı deneyimi ve lead toplama ile ürününüzü profesyonel şekilde lansmana taşıyın." />
+  <title>Dijital Lansman | Yağan Dijital</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            obsidian: "#05070A",
+            coal: "#0A0D12",
+            cyanx: "#00E5FF",
+            mintx: "#68FFE8",
+            goldx: "#D8B25B",
+            golddeep: "#9B7332",
+            panel: "#0C1218"
+          },
+          boxShadow: {
+            neon: "0 0 0 1px rgba(0,229,255,.16), 0 0 40px rgba(0,229,255,.12)",
+            gold: "0 0 0 1px rgba(216,178,91,.16), 0 0 34px rgba(216,178,91,.08)"
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+
+  <style>
+    :root{
+      --bg:#05070A;
+      --bg2:#071019;
+      --cyan:#00E5FF;
+      --mint:#68FFE8;
+      --gold:#D8B25B;
+      --line:rgba(255,255,255,.08);
+      --glass:rgba(10,15,21,.72);
+    }
+
+    *{box-sizing:border-box}
+    html{background:var(--bg)}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:#fff;
+      overflow-x:hidden;
+      background:
+        radial-gradient(circle at 78% 10%,rgba(0,229,255,.12),transparent 28%),
+        radial-gradient(circle at 12% 26%,rgba(216,178,91,.05),transparent 22%),
+        linear-gradient(180deg,#05070A 0%,#071019 46%,#05070A 100%);
+    }
+
+    ::selection{background:#00E5FF;color:#031014}
+
+    .noise::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      z-index:90;
+      pointer-events:none;
+      opacity:.025;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+    }
+
+    .glass{
+      background:linear-gradient(180deg,rgba(18,25,33,.74),rgba(7,11,16,.76));
+      border:1px solid rgba(255,255,255,.08);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+    }
+
+    .glass-cyan{
+      background:linear-gradient(180deg,rgba(5,25,32,.78),rgba(7,12,18,.74));
+      border:1px solid rgba(0,229,255,.22);
+      box-shadow:0 0 0 1px rgba(0,229,255,.03) inset,0 0 30px rgba(0,229,255,.07);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+    }
+
+    .neon-text{
+      background:linear-gradient(90deg,#fff 0%,#C3FFFF 30%,#00E5FF 64%,#5F9CFF 100%);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      filter:drop-shadow(0 0 18px rgba(0,229,255,.15));
+    }
+
+    .gold-text{
+      background:linear-gradient(90deg,#FFF2BC,#D8B25B,#A77B33);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+
+    .btn-neon{
+      background:linear-gradient(135deg,#74FFF1,#00E5FF 48%,#2F87FF);
+      color:#031014;
+      box-shadow:0 10px 36px rgba(0,229,255,.24),inset 0 1px 0 rgba(255,255,255,.55);
+      transition:.25s ease;
+    }
+    .btn-neon:hover{
+      transform:translateY(-2px);
+      box-shadow:0 14px 46px rgba(0,229,255,.36);
+    }
+
+    .btn-gold{
+      background:linear-gradient(135deg,#F7E39F,#D8B25B,#A77931);
+      color:#171008;
+      box-shadow:0 10px 30px rgba(216,178,91,.18);
+      transition:.25s ease;
+    }
+    .btn-gold:hover{transform:translateY(-2px)}
+
+    .border-shine{position:relative;isolation:isolate}
+    .border-shine::before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      border-radius:inherit;
+      padding:1px;
+      background:linear-gradient(135deg,rgba(0,229,255,.55),rgba(255,255,255,.03),rgba(216,178,91,.28));
+      -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+      -webkit-mask-composite:xor;
+      mask-composite:exclude;
+      pointer-events:none;
+    }
+
+    .hero-grid{
+      background-image:
+        linear-gradient(rgba(0,229,255,.05) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(0,229,255,.05) 1px,transparent 1px);
+      background-size:54px 54px;
+      mask-image:linear-gradient(to bottom,black,transparent 90%);
+    }
+
+    .section-line{
+      height:1px;
+      background:linear-gradient(90deg,transparent,rgba(0,229,255,.28),rgba(216,178,91,.20),transparent);
+    }
+
+    .card-hover{
+      transition:transform .28s ease,border-color .28s ease,box-shadow .28s ease;
+    }
+    .card-hover:hover{
+      transform:translateY(-6px);
+      border-color:rgba(0,229,255,.34);
+      box-shadow:0 18px 48px rgba(0,229,255,.08);
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(22px);
+      transition:opacity .65s ease,transform .65s ease;
+    }
+    .reveal.visible{opacity:1;transform:none}
+
+    .laptop{
+      position:relative;
+      border-radius:24px 24px 14px 14px;
+      background:linear-gradient(145deg,#202830,#05080c);
+      border:1px solid rgba(255,255,255,.20);
+      box-shadow:0 35px 80px rgba(0,0,0,.48),0 0 58px rgba(0,229,255,.10);
+    }
+    .laptop::after{
+      content:"";
+      position:absolute;
+      left:5%;
+      right:5%;
+      bottom:-17px;
+      height:17px;
+      border-radius:0 0 30px 30px;
+      background:linear-gradient(180deg,#2A3138,#0C1014);
+      box-shadow:0 8px 20px rgba(0,0,0,.35);
+    }
+
+    .phone{
+      border:6px solid #171B20;
+      border-radius:29px;
+      box-shadow:0 24px 46px rgba(0,0,0,.48),0 0 34px rgba(0,229,255,.08);
+    }
+
+    .step-arrow::after{
+      content:"";
+      position:absolute;
+      top:50%;
+      right:-20px;
+      width:28px;
+      height:1px;
+      background:linear-gradient(90deg,rgba(0,229,255,.55),transparent);
+    }
+
+    @media(max-width:1023px){
+      .step-arrow::after{display:none}
+    }
+  </style>
+</head>
+
+<body class="noise">
+  <!-- HEADER -->
+  <header class="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-[#05070A]/84 backdrop-blur-xl">
+    <div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <a href="#top" class="flex items-center gap-3">
+        <div class="relative flex h-11 w-11 items-center justify-center">
+          <div class="absolute inset-0 rotate-45 rounded-xl border border-goldx/45 bg-goldx/5"></div>
+          <span class="gold-text relative text-xl font-extrabold">Y</span>
+        </div>
+        <div>
+          <div class="text-sm font-extrabold tracking-[.14em] sm:text-base">YAĞAN DİJİTAL</div>
+          <div class="mt-1 text-[9px] tracking-[.34em] text-slate-500">DİJİTAL SİSTEMLER</div>
+        </div>
+      </a>
+
+      <div class="flex items-center gap-2 sm:gap-3">
+        <a href="#demo" class="hidden rounded-xl border border-cyanx/30 bg-cyanx/5 px-4 py-3 text-sm font-semibold text-cyan-100 transition hover:bg-cyanx/10 sm:inline-flex">
+          Örnek Lansman
+        </a>
+        <a href="#iletisim" class="btn-neon inline-flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-bold sm:px-5">
+          Teklif Al
+          <i data-lucide="arrow-right" class="h-4 w-4"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" class="pt-20">
+    <!-- HERO -->
+    <section class="relative overflow-hidden border-b border-cyanx/10">
+      <div class="hero-grid absolute inset-0 opacity-50"></div>
+      <div class="absolute -right-56 top-8 h-[620px] w-[620px] rounded-full bg-cyanx/10 blur-[110px]"></div>
+
+      <div class="relative mx-auto grid min-h-[760px] max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[1.02fr_.98fr] lg:px-8">
+        <div class="reveal">
+          <div class="mb-5 inline-flex items-center gap-3 rounded-full border border-cyanx/25 bg-cyanx/5 px-4 py-2">
+            <span class="h-1.5 w-1.5 rounded-full bg-cyanx shadow-[0_0_12px_#00E5FF]"></span>
+            <span class="text-[10px] font-semibold tracking-[.28em] text-cyan-100">DİJİTAL LANSMAN</span>
+          </div>
+
+          <h1 class="max-w-4xl text-4xl font-extrabold leading-[1.02] sm:text-5xl lg:text-6xl xl:text-7xl">
+            Ürününüzü Sadece Göstermeyin,
+            <span class="neon-text mt-2 block">Canlı Olarak Lansmanını Yapın.</span>
+          </h1>
+
+          <p class="mt-7 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
+            Ürün, marka, proje, mekân veya hizmetiniz için özel lansman sayfası oluşturun.
+            Katılımcılarınızı davet edin, canlı sunum yapın, ekran paylaşın, soruları yanıtlayın
+            ve talepleri tek merkezde toplayın.
+          </p>
+
+          <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+            <a href="#iletisim" class="btn-neon inline-flex items-center justify-center gap-3 rounded-xl px-7 py-4 text-sm font-bold">
+              <i data-lucide="send" class="h-4 w-4"></i>
+              Teklif Al
+              <i data-lucide="arrow-right" class="h-4 w-4"></i>
+            </a>
+            <a href="#demo" class="glass-cyan inline-flex items-center justify-center gap-3 rounded-xl px-7 py-4 text-sm font-semibold text-white transition hover:bg-cyanx/10">
+              <i data-lucide="circle-play" class="h-5 w-5 text-cyanx"></i>
+              Örnek Lansmanı İncele
+            </a>
+          </div>
+
+          <div class="mt-8 flex flex-wrap gap-x-7 gap-y-3 text-xs text-slate-400">
+            <span class="inline-flex items-center gap-2"><i data-lucide="badge-check" class="h-4 w-4 text-cyanx"></i>Profesyonel Kurulum</span>
+            <span class="inline-flex items-center gap-2"><i data-lucide="sparkles" class="h-4 w-4 text-cyanx"></i>Markanıza Özel Tasarım</span>
+            <span class="inline-flex items-center gap-2"><i data-lucide="headphones" class="h-4 w-4 text-cyanx"></i>Teknik Destek</span>
+          </div>
+        </div>
+
+        <!-- DEVICE MOCKUP -->
+        <div id="demo" class="reveal relative min-h-[560px]">
+          <div class="absolute right-0 top-2 h-[420px] w-[420px] rounded-full bg-cyanx/10 blur-[90px]"></div>
+
+          <div class="laptop border-shine absolute right-0 top-10 w-[92%] p-3 sm:w-[86%]">
+            <div class="overflow-hidden rounded-[16px] border border-white/10 bg-[#060A0F]">
+              <div class="flex items-center justify-between border-b border-white/10 bg-[#091019] px-4 py-3">
+                <div class="text-[10px] font-semibold tracking-[.18em] text-white">DİJİTAL LANSMAN</div>
+                <div class="rounded-full bg-red-500/15 px-2.5 py-1 text-[9px] font-bold text-red-300">● CANLI</div>
+              </div>
+
+              <div class="grid min-h-[390px] gap-2 p-2 sm:grid-cols-[1.35fr_.65fr]">
+                <div class="relative overflow-hidden rounded-xl border border-white/10 bg-[radial-gradient(circle_at_68%_18%,rgba(0,229,255,.18),transparent_34%),linear-gradient(145deg,#101923,#05090D)]">
+                  <div class="absolute inset-0 bg-[linear-gradient(rgba(0,229,255,.05)_1px,transparent_1px),linear-gradient(90deg,rgba(0,229,255,.05)_1px,transparent_1px)] bg-[size:34px_34px]"></div>
+                  <div class="relative flex h-full min-h-[300px] flex-col justify-between p-6">
+                    <div class="inline-flex items-center gap-2 text-xs text-cyan-100">
+                      <i data-lucide="radio" class="h-4 w-4 text-cyanx"></i>
+                      Ürün sunumu yayında
+                    </div>
+
+                    <div>
+                      <div class="text-[10px] tracking-[.2em] text-cyanx">YAĞAN DİJİTAL</div>
+                      <h2 class="mt-2 text-3xl font-bold leading-tight">
+                        Fikirlerden
+                        <span class="block text-cyanx">Gerçek Çözümlere</span>
+                      </h2>
+                      <p class="mt-3 max-w-xs text-xs leading-5 text-slate-400">
+                        Canlı sunum, ekran paylaşımı ve katılımcı deneyimi tek yapıda.
+                      </p>
+                    </div>
+
+                    <div class="flex gap-2">
+                      <span class="glass flex h-10 w-10 items-center justify-center rounded-xl"><i data-lucide="video" class="h-4 w-4 text-cyanx"></i></span>
+                      <span class="glass flex h-10 w-10 items-center justify-center rounded-xl"><i data-lucide="monitor-up" class="h-4 w-4 text-cyanx"></i></span>
+                      <span class="glass flex h-10 w-10 items-center justify-center rounded-xl"><i data-lucide="messages-square" class="h-4 w-4 text-cyanx"></i></span>
+                      <span class="glass flex h-10 w-10 items-center justify-center rounded-xl"><i data-lucide="users-round" class="h-4 w-4 text-cyanx"></i></span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="grid gap-2 sm:grid-rows-3">
+                  <div class="glass flex min-h-24 flex-col justify-between rounded-xl p-4">
+                    <div class="flex h-9 w-9 items-center justify-center rounded-full bg-cyanx/10 text-cyanx"><i data-lucide="user-round" class="h-4 w-4"></i></div>
+                    <div><div class="text-xs font-medium">Sunucu</div><div class="mt-1 text-[10px] text-cyanx">Canlı anlatım</div></div>
+                  </div>
+                  <div class="glass flex min-h-24 flex-col justify-between rounded-xl p-4">
+                    <div class="flex h-9 w-9 items-center justify-center rounded-full bg-cyanx/10 text-cyanx"><i data-lucide="user-round" class="h-4 w-4"></i></div>
+                    <div><div class="text-xs font-medium">Davetli 01</div><div class="mt-1 text-[10px] text-slate-500">Katılım sağladı</div></div>
+                  </div>
+                  <div class="glass flex min-h-24 flex-col justify-between rounded-xl p-4">
+                    <div class="flex h-9 w-9 items-center justify-center rounded-full bg-goldx/10 text-goldx"><i data-lucide="user-round" class="h-4 w-4"></i></div>
+                    <div><div class="text-xs font-medium">Davetli 02</div><div class="mt-1 text-[10px] text-slate-500">Katılım sağladı</div></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex items-center justify-center gap-3 border-t border-white/10 bg-[#080E14] px-4 py-3">
+                <button class="glass flex h-9 w-9 items-center justify-center rounded-lg"><i data-lucide="mic" class="h-4 w-4 text-cyanx"></i></button>
+                <button class="glass flex h-9 w-9 items-center justify-center rounded-lg"><i data-lucide="video" class="h-4 w-4 text-cyanx"></i></button>
+                <button class="glass flex h-9 w-9 items-center justify-center rounded-lg"><i data-lucide="monitor-up" class="h-4 w-4 text-cyanx"></i></button>
+                <button class="glass flex h-9 w-9 items-center justify-center rounded-lg"><i data-lucide="message-square" class="h-4 w-4 text-cyanx"></i></button>
+                <button class="rounded-lg bg-red-500 px-4 py-2 text-[10px] font-bold text-white">BİTİR</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="phone border-shine absolute bottom-0 left-0 w-[34%] min-w-[150px] overflow-hidden bg-[#090E14] sm:left-4 sm:w-[27%]">
+            <div class="mx-auto mt-2 h-1.5 w-14 rounded-full bg-white/15"></div>
+            <div class="p-3">
+              <div class="text-[8px] font-bold tracking-[.15em] text-white">DİJİTAL LANSMAN</div>
+              <div class="mt-3 rounded-xl border border-white/10 bg-[radial-gradient(circle_at_60%_20%,rgba(0,229,255,.16),transparent_36%),linear-gradient(145deg,#101923,#05090D)] p-3">
+                <i data-lucide="radio" class="h-4 w-4 text-cyanx"></i>
+                <div class="mt-8 text-[8px] tracking-[.18em] text-goldx">CANLI TANITIM</div>
+                <div class="mt-1 text-sm font-bold">Mobilde de Kusursuz</div>
+              </div>
+              <p class="mt-3 text-[9px] leading-4 text-slate-400">Davetlileriniz lansmana telefonlarından katılsın.</p>
+              <button class="btn-gold mt-4 w-full rounded-lg px-2 py-2 text-[8px] font-bold">CANLI LANSMANA KATIL</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="border-b border-cyanx/10 bg-[#07090C] py-16">
+      <div class="mx-auto grid max-w-7xl gap-3 px-4 sm:grid-cols-2 sm:px-6 lg:grid-cols-3 lg:px-8 xl:grid-cols-6">
+        <article class="glass-cyan card-hover reveal rounded-2xl p-5">
+          <i data-lucide="video" class="h-7 w-7 text-cyanx"></i>
+          <h3 class="mt-4 font-bold">Canlı Sunum</h3>
+          <p class="mt-2 text-xs leading-5 text-slate-400">Ürün ve hizmetlerinizi kamera ve ses ile canlı olarak anlatın.</p>
+        </article>
+        <article class="glass-cyan card-hover reveal rounded-2xl p-5">
+          <i data-lucide="monitor-up" class="h-7 w-7 text-cyanx"></i>
+          <h3 class="mt-4 font-bold">Ekran Paylaşımı</h3>
+          <p class="mt-2 text-xs leading-5 text-slate-400">Sunum, katalog, video ve dokümanlarınızı anlık paylaşın.</p>
+        </article>
+        <article class="glass-cyan card-hover reveal rounded-2xl p-5">
+          <i data-lucide="users-round" class="h-7 w-7 text-cyanx"></i>
+          <h3 class="mt-4 font-bold">Katılımcı Deneyimi</h3>
+          <p class="mt-2 text-xs leading-5 text-slate-400">Markanıza özel profesyonel bir lansman deneyimi sunun.</p>
+        </article>
+        <article class="glass-cyan card-hover reveal rounded-2xl p-5">
+          <i data-lucide="messages-square" class="h-7 w-7 text-cyanx"></i>
+          <h3 class="mt-4 font-bold">Soru · Cevap</h3>
+          <p class="mt-2 text-xs leading-5 text-slate-400">Katılımcılarla gerçek zamanlı iletişim kurun.</p>
+        </article>
+        <article class="glass-cyan card-hover reveal rounded-2xl p-5">
+          <i data-lucide="database" class="h-7 w-7 text-cyanx"></i>
+          <h3 class="mt-4 font-bold">Lead Toplama</h3>
+          <p class="mt-2 text-xs leading-5 text-slate-400">Katılım ve talep bilgilerini tek noktada toplayın.</p>
+        </article>
+        <article class="glass-cyan card-hover reveal rounded-2xl p-5">
+          <i data-lucide="chart-no-axes-combined" class="h-7 w-7 text-cyanx"></i>
+          <h3 class="mt-4 font-bold">Yönetim Paneli</h3>
+          <p class="mt-2 text-xs leading-5 text-slate-400">Lansman sonuçlarını ve geri dönüşleri merkezi olarak takip edin.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- HOW -->
+    <section class="border-b border-white/5 bg-black/20 py-20">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <p class="text-[10px] font-bold tracking-[.28em] text-goldx">4 ADIMDA DİJİTAL LANSMAN</p>
+          <h2 class="mt-3 text-3xl font-extrabold sm:text-5xl">Nasıl Çalışır?</h2>
+        </div>
+
+        <div class="mt-10 grid gap-4 lg:grid-cols-4">
+          <article class="step-arrow glass card-hover reveal relative rounded-2xl p-6">
+            <span class="absolute right-5 top-5 text-4xl font-black text-white/5">01</span>
+            <i data-lucide="mail" class="h-7 w-7 text-goldx"></i>
+            <h3 class="mt-5 text-lg font-bold">Davet Et</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-400">Özel lansman sayfanızla hedef kitlenizi davet edin.</p>
+          </article>
+
+          <article class="step-arrow glass card-hover reveal relative rounded-2xl p-6">
+            <span class="absolute right-5 top-5 text-4xl font-black text-white/5">02</span>
+            <i data-lucide="user-plus" class="h-7 w-7 text-goldx"></i>
+            <h3 class="mt-5 text-lg font-bold">Katılım Al</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-400">Katılımcılar kolayca kayıt olsun ve sürece dahil olsun.</p>
+          </article>
+
+          <article class="step-arrow glass card-hover reveal relative rounded-2xl p-6">
+            <span class="absolute right-5 top-5 text-4xl font-black text-white/5">03</span>
+            <i data-lucide="presentation" class="h-7 w-7 text-goldx"></i>
+            <h3 class="mt-5 text-lg font-bold">Canlı Anlat</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-400">Ürününüzü canlı sunum ve ekran paylaşımıyla anlatın.</p>
+          </article>
+
+          <article class="glass card-hover reveal relative rounded-2xl p-6">
+            <span class="absolute right-5 top-5 text-4xl font-black text-white/5">04</span>
+            <i data-lucide="chart-column-increasing" class="h-7 w-7 text-goldx"></i>
+            <h3 class="mt-5 text-lg font-bold">Talep Topla</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-400">Katılımcı bilgilerini toplayın ve satış sürecine aktarın.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHO -->
+    <section class="py-20">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal">
+          <p class="text-[10px] font-bold tracking-[.28em] text-cyanx">HER SEKTÖR İÇİN UYGUN</p>
+          <h2 class="mt-3 text-3xl font-extrabold sm:text-5xl">Kimler İçin?</h2>
+        </div>
+
+        <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          <article class="group glass card-hover reveal overflow-hidden rounded-2xl">
+            <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=700&q=80" alt="Marka lansmanları" class="h-40 w-full object-cover transition duration-500 group-hover:scale-105">
+            <div class="p-5"><h3 class="font-bold">Marka Lansmanları</h3><p class="mt-2 text-xs leading-5 text-slate-400">Yeni marka, hizmet ve proje tanıtımları</p></div>
+          </article>
+
+          <article class="group glass card-hover reveal overflow-hidden rounded-2xl">
+            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=700&q=80" alt="Ürün tanıtımları" class="h-40 w-full object-cover transition duration-500 group-hover:scale-105">
+            <div class="p-5"><h3 class="font-bold">Ürün Tanıtımları</h3><p class="mt-2 text-xs leading-5 text-slate-400">Yeni ürün ve koleksiyon lansmanları</p></div>
+          </article>
+
+          <article class="group glass card-hover reveal overflow-hidden rounded-2xl">
+            <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=700&q=80" alt="Mekan organizasyon" class="h-40 w-full object-cover transition duration-500 group-hover:scale-105">
+            <div class="p-5"><h3 class="font-bold">Mekân / Organizasyon</h3><p class="mt-2 text-xs leading-5 text-slate-400">Düğün, davet ve etkinlik mekânları</p></div>
+          </article>
+
+          <article class="group glass card-hover reveal overflow-hidden rounded-2xl">
+            <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=700&q=80" alt="Şube açılışları" class="h-40 w-full object-cover transition duration-500 group-hover:scale-105">
+            <div class="p-5"><h3 class="font-bold">Şube / İşletme Açılışları</h3><p class="mt-2 text-xs leading-5 text-slate-400">Yeni açılış ve büyüme duyuruları</p></div>
+          </article>
+
+          <article class="group glass card-hover reveal overflow-hidden rounded-2xl">
+            <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=700&q=80" alt="Kurumsal sunumlar" class="h-40 w-full object-cover transition duration-500 group-hover:scale-105">
+            <div class="p-5"><h3 class="font-bold">Kurumsal Sunumlar</h3><p class="mt-2 text-xs leading-5 text-slate-400">Bayi, yatırımcı ve kurum içi sunumlar</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY -->
+    <section class="border-y border-white/5 bg-gradient-to-b from-[#081018] to-[#05070A] py-20">
+      <div class="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[.8fr_1.2fr] lg:px-8">
+        <div class="reveal">
+          <p class="text-[10px] font-bold tracking-[.28em] text-goldx">DAHA FAZLA FIRSAT, DAHA FAZLA SONUÇ</p>
+          <h2 class="mt-3 text-3xl font-extrabold sm:text-5xl">Neden Dijital Lansman?</h2>
+          <p class="mt-5 max-w-xl text-sm leading-7 text-slate-400">
+            Ürün ve hizmetlerinizi sadece göstermek yerine; canlı anlatım, katılım,
+            veri toplama ve satış takibini tek bir profesyonel deneyimde birleştirin.
+          </p>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          <article class="glass-cyan card-hover reveal rounded-2xl p-6">
+            <i data-lucide="target" class="h-7 w-7 text-cyanx"></i>
+            <h3 class="mt-4 text-lg font-bold">Daha Fazla Lead</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-400">Potansiyel müşterilerinize daha kolay ulaşın.</p>
+          </article>
+
+          <article class="glass-cyan card-hover reveal rounded-2xl p-6">
+            <i data-lucide="chart-spline" class="h-7 w-7 text-cyanx"></i>
+            <h3 class="mt-4 text-lg font-bold">Ölçülebilir Lansman</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-400">Katılım ve etkileşimleri raporlanabilir hale getirin.</p>
+          </article>
+
+          <article class="glass-cyan card-hover reveal rounded-2xl p-6">
+            <i data-lucide="users-round" class="h-7 w-7 text-cyanx"></i>
+            <h3 class="mt-4 text-lg font-bold">Merkezi Takip</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-400">Tüm talepleri ve geri dönüşleri tek panelde yönetin.</p>
+          </article>
+
+          <article class="glass-cyan card-hover reveal rounded-2xl p-6">
+            <i data-lucide="gem" class="h-7 w-7 text-cyanx"></i>
+            <h3 class="mt-4 text-lg font-bold">Prestijli Sunum</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-400">Markanıza yakışan premium bir dijital deneyim oluşturun.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="iletisim" class="relative overflow-hidden py-24">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_100%,rgba(0,229,255,.14),transparent_42%)]"></div>
+      <div class="relative mx-auto max-w-5xl px-4 text-center sm:px-6">
+        <div class="reveal">
+          <p class="text-[10px] font-bold tracking-[.28em] text-goldx">DİJİTALDE DAHA GÜÇLÜ BİR LANSMAN İÇİN</p>
+          <h2 class="mt-4 text-4xl font-extrabold sm:text-6xl">Dijital Lansmanınızı Başlatalım.</h2>
+          <p class="mx-auto mt-5 max-w-2xl text-sm leading-7 text-slate-400">
+            Ürün, marka, proje veya hizmetiniz için size özel lansman akışını birlikte planlayalım.
+          </p>
+        </div>
+
+        <div class="reveal mt-9 flex flex-col justify-center gap-3 sm:flex-row">
+          <a href="https://wa.me/905378875447?text=Merhaba%2C%20Dijital%20Lansman%20ürünü%20hakkında%20bilgi%20almak%20istiyorum."
+             class="inline-flex items-center justify-center gap-3 rounded-xl bg-[#16C96D] px-7 py-4 text-sm font-bold text-white shadow-[0_10px_34px_rgba(22,201,109,.24)] transition hover:-translate-y-0.5 hover:bg-[#19DB77]">
+            <i data-lucide="message-circle" class="h-5 w-5"></i>
+            WhatsApp ile İletişime Geç
+          </a>
+
+          <a href="mailto:info@yagandijital.com?subject=Dijital%20Lansman%20Teklif%20Talebi"
+             class="btn-gold inline-flex items-center justify-center gap-3 rounded-xl px-7 py-4 text-sm font-bold">
+            <i data-lucide="file-text" class="h-5 w-5"></i>
+            Teklif İste
+          </a>
+        </div>
+
+        <div class="reveal mt-8 flex flex-wrap justify-center gap-x-7 gap-y-3 text-xs text-slate-500">
+          <span class="inline-flex items-center gap-2"><i data-lucide="headphones" class="h-4 w-4 text-cyanx"></i>Hızlı Geri Dönüş</span>
+          <span class="inline-flex items-center gap-2"><i data-lucide="shield-check" class="h-4 w-4 text-cyanx"></i>Uzman Danışmanlık</span>
+          <span class="inline-flex items-center gap-2"><i data-lucide="settings-2" class="h-4 w-4 text-cyanx"></i>Size Özel Çözüm</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-white/5 bg-[#030507]">
+    <div class="mx-auto flex max-w-7xl flex-col gap-5 px-4 py-8 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
+      <div class="flex items-center gap-3">
+        <div class="flex h-9 w-9 items-center justify-center rounded-xl border border-goldx/30 bg-goldx/5">
+          <span class="gold-text font-extrabold">Y</span>
+        </div>
+        <div>
+          <div class="text-xs font-bold tracking-[.15em]">YAĞAN DİJİTAL</div>
+          <div class="mt-1 text-[9px] tracking-[.2em] text-slate-600">DİJİTAL LANSMAN · FİKİRDEN CANLIYA</div>
+        </div>
+      </div>
+      <div class="text-xs text-slate-600">© <span id="year"></span> Yağan Dijital</div>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
